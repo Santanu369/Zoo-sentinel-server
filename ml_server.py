@@ -3,7 +3,8 @@ from pydantic import BaseModel
 import pandas as pd
 import joblib
 from fastapi.middleware.cors import CORSMiddleware
-from twilio.rest import Client
+import os
+import resend
 
 
 app = FastAPI()
@@ -49,22 +50,19 @@ def predict(data: PredictionInput):
         "hazard_probability": round(float(prediction), 2)
     }
 
-@app.get("/sendSMS")
-def sendSMS():
-    account_sid = "YOUR_ACCOUNT_SID"
-    auth_token = "YOUR_AUTH_TOKEN"
+@app.get("/sendEmail")
+def send_email():
+    resend.api_key = os.getenv("RESEND_API")
 
-    client = Client(account_sid, auth_token)
+    r = resend.Emails.send({
+    "from": "onboarding@resend.dev",
+    "to": "piyalibanerjee369@gmail.com",
+    "subject": "Hello World",
+    "html": "<p>Congrats on sending your <strong>first email</strong>!</p>"
+    })
 
-    message = client.messages.create(
-        body="Emergency alert! Please check your area.",
-        from_="+918250038439",
-        to="+919093654355"
-    )
+
 
     return {
-        "status": "SMS sent",
-        "sid": message.sid
+        "status": "Email sent",
     }
-
-
