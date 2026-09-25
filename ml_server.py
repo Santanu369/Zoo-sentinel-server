@@ -57,8 +57,12 @@ def send_email():
     r = resend.Emails.send({
     "from": "onboarding@resend.dev",
     "to": "piyalibanerjee369@gmail.com",
-    "subject": "Hello World",
-    "html": "<p>Congrats on sending your <strong>first email</strong>!</p>"
+    "subject": "Emergency Alert",
+    "html": """
+        <h2>Emergency Alert</h2>
+        <p>Unusual animal behaviour has been detected.</p>
+        <p>Please check your area.</p>
+    """
     })
 
 
