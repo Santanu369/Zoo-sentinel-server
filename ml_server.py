@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load your trained model
+# Load our trained model
 model = joblib.load("zoo_sentinel_model.pkl")
 
 
