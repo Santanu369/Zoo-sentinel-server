@@ -65,17 +65,6 @@ def send_email():
     """
     })
 
-    r2 = resend.Emails.send({
-        "from": "onboarding@resend.dev",
-        "to": "saptarshighosh2306@gmail.com",
-        "subject": "Emergency Alert",
-        "html": """
-            <h2>Emergency Alert</h2>
-            <p>Unusual animal behaviour has been detected.</p>
-            <p>Please check your area.</p>
-        """
-        })
-
 
 
     return {
